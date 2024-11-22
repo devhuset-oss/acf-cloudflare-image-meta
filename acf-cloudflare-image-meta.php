@@ -182,6 +182,16 @@ function register_cloudflare_image_field()
             return $valid;
         }
 
+        public function render_field_settings($field)
+        {
+            acf_render_field_setting($field, [
+                'label' => __('Instructions', 'acf-cloudflare-image-meta'),
+                'instructions' => __('Paste your Cloudflare image URL', 'acf-cloudflare-image-meta'),
+                'type' => 'text',
+                'name' => 'instructions'
+            ]);
+        }
+
         private function get_image_dimensions($url)
         {
             $temp_file = download_url($url);
