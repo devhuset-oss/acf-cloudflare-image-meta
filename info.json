@@ -2,7 +2,7 @@
 	"name": "ACF Cloudflare Image Meta",
 	"slug": "acf-cloudflare-image-meta",
 	"author": "<a href='https://devhuset.no'>Devhuset AS</a>",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"download_url": "https://plugins.devhuset.dev/acf-cloudflare-image-meta/acf-cloudflare-image-meta.zip",
 	"requires": "6.5",
 	"tested": "6.7",
