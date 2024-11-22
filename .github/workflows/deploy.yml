@@ -1,0 +1,68 @@
+name: Deploy
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Create directory
+              run: mkdir -p acf-cloudflare-image-meta
+
+            - name: Copy files
+              run: |
+                  cp acf-cloudflare-image-meta.php acf-cloudflare-image-meta/
+                  cp update.php acf-cloudflare-image-meta/
+                  cp -r assets acf-cloudflare-image-meta/
+
+            - name: Zip files
+              run: zip -r acf-cloudflare-image-meta.zip acf-cloudflare-image-meta || exit 1
+
+            - name: Validate zip
+              run: unzip -t acf-cloudflare-image-meta.zip
+
+            - name: Sync files to the server
+              uses: burnett01/rsync-deployments@7.0.1
+              with:
+                  switches: -avzr --delete --include="acf-cloudflare-image-meta.zip" --include="info.json" --exclude="*"
+                  legacy_allow_rsa_hostkeys: 'true'
+                  path: /
+                  remote_path: /var/www/public_html/acf-cloudflare-image-meta
+                  remote_host: ${{ secrets.HOST }}
+                  remote_user: ${{ secrets.USERNAME }}
+                  remote_key: ${{ secrets.SSH_PRIV_KEY }}
+
+            - name: Cleanup
+              if: always()
+              run: rm -rf acf-cloudflare-image-meta acf-cloudflare-image-meta.zip
+
+    fail:
+        name: Fail
+        needs: deploy
+        if: failure()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Notify Discord
+              uses: joelwmale/webhook-action@master
+              with:
+                  url: ${{ secrets.DISCORD_WEBHOOK }}
+                  body: '{"content": "ACF Cloudflare Image Meta deployment failed. :x:"}'
+
+    success:
+        name: Success
+        needs: deploy
+        if: success()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Notify Discord
+              uses: joelwmale/webhook-action@master
+              with:
+                  url: ${{ secrets.DISCORD_WEBHOOK }}
+                  body: '{"content": "ACF Cloudflare Image Meta deployment successful. :white_check_mark:"}'

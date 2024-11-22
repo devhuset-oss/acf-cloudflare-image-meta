@@ -1,0 +1,16 @@
+{
+	"name": "ACF Cloudflare Image Meta",
+	"slug": "acf-cloudflare-image-meta",
+	"author": "<a href='https://devhuset.no'>Devhuset AS</a>",
+	"version": "1.0.0",
+	"download_url": "https://plugins.devhuset.dev/acf-cloudflare-image-meta/acf-cloudflare-image-meta.zip",
+	"requires": "6.5",
+	"tested": "6.7",
+	"requires_php": "8.0",
+	"last_updated": "2024-11-22 12:00:00",
+	"sections": {
+		"description": "Automatically fetches and stores metadata for Cloudflare images in ACF fields",
+		"installation": "Install and activate Advanced Custom Fields plugin first. Then upload and activate this plugin through WordPress admin panel.",
+		"changelog": "<h4>1.0.0 – 22 November 2024</h4><ul><li>Initial release</li></ul>"
+	}
+}
