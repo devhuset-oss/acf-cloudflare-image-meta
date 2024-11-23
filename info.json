@@ -2,15 +2,15 @@
 	"name": "ACF Cloudflare Image Meta",
 	"slug": "acf-cloudflare-image-meta",
 	"author": "<a href='https://devhuset.no'>Devhuset AS</a>",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"download_url": "https://plugins.devhuset.dev/acf-cloudflare-image-meta/acf-cloudflare-image-meta.zip",
 	"requires": "6.5",
 	"tested": "6.7",
 	"requires_php": "8.0",
-	"last_updated": "2024-11-22 12:00:00",
+	"last_updated": "2024-11-23 12:00:00",
 	"sections": {
-		"description": "Automatically fetches and stores metadata for Cloudflare images in ACF fields",
-		"installation": "Install and activate Advanced Custom Fields plugin first. Then upload and activate this plugin through WordPress admin panel.",
-		"changelog": "<h4>1.0.0 – 22 November 2024</h4><ul><li>Initial release</li></ul>"
+		"description": "Automatically generates responsive Cloudflare image variants in ACF fields. Supports multiple predefined sizes (xs, sm, md, lg, xl, thumbnail, card, hero) with proper srcset implementation.",
+		"installation": "1. Install and activate Advanced Custom Fields plugin\n2. Upload and activate this plugin\n3. Configure your Cloudflare Image variants to match the plugin's preset names (xs, sm, md, lg, xl, thumbnail, card, hero, public)\n4. Use the Cloudflare Image field type in your ACF field groups",
+		"changelog": "<h4>2.0.0 – 23 November 2024</h4><ul><li>Complete rewrite for better performance and security</li><li>Added predefined variants for responsive images</li><li>Removed dynamic transformations in favor of Cloudflare presets</li><li>Simplified UI and removed unnecessary metadata fetching</li><li>Added support for proper srcset implementation</li></ul><h4>1.0.1 – 22 November 2024</h4><ul><li>Initial release</li></ul>"
 	}
 }

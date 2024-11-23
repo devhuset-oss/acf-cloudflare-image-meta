@@ -2,25 +2,19 @@
 	max-width: 600px;
 }
 
+.acf-cloudflare-image-wrapper .acf-input-wrap {
+	margin-bottom: 15px;
+}
+
+.acf-cloudflare-image-wrapper input {
+	width: 100%;
+}
+
 .cloudflare-image-preview {
-	margin: 10px 0;
-	min-height: 100px;
-	border: 1px dashed #ddd;
-	padding: 10px;
+	margin-top: 10px;
 }
 
 .preview-image {
-	max-width: 100%;
-	height: auto;
-}
-
-.image-metadata {
-	background: #f9f9f9;
-	padding: 10px;
-	margin-top: 10px;
-	border: 1px solid #eee;
-}
-
-.image-metadata p {
-	margin: 5px 0;
+	border: 1px solid #ddd;
+	border-radius: 4px;
 }
