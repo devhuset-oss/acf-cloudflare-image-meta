@@ -4,7 +4,7 @@
  * Description: Automatically generates responsive Cloudflare image variants in ACF fields
  * Requires at least: 6.5
  * Requires PHP: 8.0
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: Devhuset AS
  * Author URI: https://devhuset.no
  * License: GPL-2.0-or-later
@@ -16,7 +16,7 @@
 
 defined('ABSPATH') || exit;
 
-define('ACF_CLOUDFLARE_IMAGE_VERSION', '2.0.0');
+define('ACF_CLOUDFLARE_IMAGE_VERSION', '2.0.1');
 define('ACF_CLOUDFLARE_IMAGE_DIR', plugin_dir_path(__FILE__));
 define('ACF_CLOUDFLARE_IMAGE_URL', plugin_dir_url(__FILE__));
 define('ACF_CLOUDFLARE_IMAGE_BASENAME', plugin_basename(__FILE__));
@@ -49,6 +49,11 @@ function register_cloudflare_image_field()
     class ACF_Field_Cloudflare_Image extends acf_field
     {
         private $cloudflare_variants = [
+            'thumbnail' => [
+                'preset' => 'thumbnail',
+                'width' => 150,
+                'height' => 150
+            ],
             'xs' => [
                 'preset' => 'xs',
                 'width' => 320,
@@ -73,21 +78,6 @@ function register_cloudflare_image_field()
                 'preset' => 'xl',
                 'width' => 1440,
                 'height' => 1440
-            ],
-            'thumbnail' => [
-                'preset' => 'thumbnail',
-                'width' => 150,
-                'height' => 150
-            ],
-            'card' => [
-                'preset' => 'card',
-                'width' => 384,
-                'height' => 216
-            ],
-            'hero' => [
-                'preset' => 'hero',
-                'width' => 1920,
-                'height' => 1080
             ],
             'public' => [
                 'preset' => 'public',
@@ -201,7 +191,7 @@ function register_cloudflare_image_field()
         {
             acf_render_field_setting($field, [
                 'label' => __('Instructions', 'acf-cloudflare-image-meta'),
-                'instructions' => __('Paste a Cloudflare Images URL. Available variants: xs, sm, md, lg, xl, thumbnail, card, hero, public', 'acf-cloudflare-image-meta'),
+                'instructions' => __('Paste a Cloudflare Images URL. Available variants: xs, sm, md, lg, xl, thumbnail, public', 'acf-cloudflare-image-meta'),
                 'type' => 'message',
                 'name' => 'instructions'
             ]);
